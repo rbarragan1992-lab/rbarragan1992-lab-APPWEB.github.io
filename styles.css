@@ -235,10 +235,11 @@ h1 span{color:var(--green)}
   .wide,.big{grid-column:span 3}
   .actions button{flex:1 1 100%}
 }
+
 @media (max-width: 520px){
-  .keys-scientific{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .wide{grid-column:span 2}
-  .big{grid-column:span 2}
+  .keys-scientific{
+    grid-template-columns: repeat(2,minmax(0,1fr));
+}
 }
 
 
