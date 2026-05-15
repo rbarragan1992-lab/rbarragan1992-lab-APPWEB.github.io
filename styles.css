@@ -237,9 +237,8 @@ h1 span{color:var(--green)}
 }
 
 @media (max-width: 520px){
-
   .keys-scientific{
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 6px;
   }
 
@@ -251,7 +250,7 @@ h1 span{color:var(--green)}
   }
 
   .wide{
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   .big{
@@ -268,7 +267,6 @@ h1 span{color:var(--green)}
   }
 
 }
-
 
 /* AJUSTE PROFESIONAL HEADER */
 .topbar{
