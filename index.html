@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Universal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img src="logo_utm.png" alt="Logo UTM" class="logo" />
+        <div>
+          <p class="subtitle">Universidad Técnica de Manabí</p>
+          <h1>Calculadora <span>Universal</span></h1>
+        </div>
+      </div>
+
+      <div class="topbadges">
+        <div class="badge">PATENTADO<br><small>Uso académico</small></div>
+        <div class="badge outline">© Barr-Loz-Tir-Mos - UTM</div>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <button class="nav-btn active" data-view="scientific">🧮 Científica</button>
+      <button class="nav-btn" data-view="mass">⚖️ Masa</button>
+      <button class="nav-btn" data-view="units">🔁 Unidades</button>
+      <button class="nav-btn" data-view="temperature">🌡️ Temperatura</button>
+      <button class="nav-btn" data-view="history">🕘 Historial</button>
+      <button class="nav-btn" data-view="favorites">⭐ Favoritos</button>
+      <button class="nav-btn" data-view="settings">⚙️ Ajustes</button>
+      <button class="nav-btn" data-view="help">❓ Ayuda</button>
+    </nav>
+
+    <main class="panel">
+      <section class="panel-head">
+        <div>
+          <h2 id="panelTitle">🧮 Calculadora Científica</h2>
+          <p id="panelDesc">Pantalla principal para operaciones matemáticas y científicas.</p>
+        </div>
+
+        <div class="mode-switch">
+          <button id="degBtn" class="mini active" type="button">DEG</button>
+          <button id="radBtn" class="mini" type="button">RAD</button>
+        </div>
+      </section>
+
+      <section id="view-scientific" class="view active">
+        <div class="display">
+          <div class="expr" id="exprPreview">&nbsp;</div>
+          <div class="res" id="result">0</div>
+        </div>
+
+        <div class="keys keys-scientific">
+          <button data-ins="sin(" class="func">sin</button>
+          <button data-ins="cos(" class="func">cos</button>
+          <button data-ins="tan(" class="func">tan</button>
+          <button data-ins="log(" class="func">log</button>
+
+          <button data-ins="ln(" class="func">ln</button>
+          <button data-ins="sqrt(" class="func">√</button>
+          <button data-ins="π">π</button>
+          <button data-ins="e">e</button>
+
+          <button data-ins="(">(</button>
+          <button data-ins=")">)</button>
+          <button data-ins="^">xʸ</button>
+          <button data-ins="!">n!</button>
+
+          <button data-ins="7">7</button>
+          <button data-ins="8">8</button>
+          <button data-ins="9">9</button>
+          <button data-ins="/" class="op">÷</button>
+
+          <button data-ins="4">4</button>
+          <button data-ins="5">5</button>
+          <button data-ins="6">6</button>
+          <button data-ins="*" class="op">×</button>
+
+          <button data-ins="1">1</button>
+          <button data-ins="2">2</button>
+          <button data-ins="3">3</button>
+          <button data-ins="-" class="op">−</button>
+
+          <button data-ins="0" class="wide">0</button>
+          <button data-ins=".">.</button>
+          <button data-ins="+" class="op">+</button>
+
+          <button data-act="clear" class="danger">C</button>
+          <button data-act="back">⌫</button>
+          <button data-act="eq" class="ok big">=</button>
+        </div>
+
+        <div class="actions">
+          <button id="saveFavBtn" type="button">Agregar a Favoritos</button>
+          <button id="copyBtn" type="button">Copiar resultado</button>
+        </div>
+      </section>
+
+      <section id="view-mass" class="view">
+        <div class="conversion-card">
+          <h3>⚖️ Calculadora de Masa</h3>
+          <p>Una sola pantalla para convertir entre unidades de masa.</p>
+
+          <div class="form-grid">
+            <label><span>Valor</span><input type="number" id="massValue" placeholder="75" /></label>
+            <label><span>De</span><select id="massFrom"></select></label>
+            <label><span>A</span><select id="massTo"></select></label>
+            <button id="massConvertBtn" class="primary" type="button">Convertir masa</button>
+          </div>
+
+          <div class="result-box"><span>Resultado</span><strong id="massResult">—</strong></div>
+        </div>
+      </section>
+
+      <section id="view-units" class="view">
+        <div class="conversion-card">
+          <h3>🔁 Convertidora de Unidades</h3>
+          <p>Selecciona categoría, origen y destino.</p>
+
+          <div class="form-grid">
+            <label><span>Categoría</span><select id="unitCategory"></select></label>
+            <label><span>Valor</span><input type="number" id="unitValue" placeholder="100" /></label>
+            <label><span>De</span><select id="unitFrom"></select></label>
+            <label><span>A</span><select id="unitTo"></select></label>
+            <button id="unitConvertBtn" class="primary" type="button">Convertir unidades</button>
+          </div>
+
+          <div class="result-box"><span>Resultado</span><strong id="unitResult">—</strong></div>
+        </div>
+      </section>
+
+      <section id="view-temperature" class="view">
+        <div class="conversion-card">
+          <h3>🌡️ Convertidora de Temperatura</h3>
+          <p>Convierte entre Celsius, Fahrenheit y Kelvin.</p>
+
+          <div class="form-grid">
+            <label><span>Valor</span><input type="number" id="tempValue" placeholder="25" /></label>
+            <label><span>De</span>
+              <select id="tempFrom">
+                <option value="c">Celsius (°C)</option>
+                <option value="f">Fahrenheit (°F)</option>
+                <option value="k">Kelvin (K)</option>
+              </select>
+            </label>
+            <label><span>A</span>
+              <select id="tempTo">
+                <option value="f">Fahrenheit (°F)</option>
+                <option value="c">Celsius (°C)</option>
+                <option value="k">Kelvin (K)</option>
+              </select>
+            </label>
+            <button id="tempConvertBtn" class="primary" type="button">Convertir temperatura</button>
+          </div>
+
+          <div class="result-box"><span>Resultado</span><strong id="tempResult">—</strong></div>
+        </div>
+      </section>
+
+      <section id="view-history" class="view">
+        <div class="list-card">
+          <div class="list-head">
+            <h3>🕘 Historial</h3>
+            <button id="clearHistoryBtn" type="button">Limpiar</button>
+          </div>
+          <div id="historyList" class="list-box"><span class="empty">Aún no hay operaciones.</span></div>
+        </div>
+      </section>
+
+      <section id="view-favorites" class="view">
+        <div class="list-card">
+          <div class="list-head">
+            <h3>⭐ Favoritos</h3>
+            <button id="clearFavBtn" type="button">Limpiar</button>
+          </div>
+          <div id="favoritesList" class="list-box"><span class="empty">Sin favoritos guardados.</span></div>
+        </div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <div class="list-card">
+          <div class="list-head"><h3>⚙️ Ajustes</h3></div>
+          <label class="setting">
+            <span>Mostrar separador de miles</span>
+            <input type="checkbox" id="thousandsToggle" checked />
+          </label>
+          <label class="setting">
+            <span>Modo oscuro</span>
+            <input type="checkbox" id="darkToggle" checked />
+          </label>
+        </div>
+      </section>
+
+      <section id="view-help" class="view">
+        <div class="list-card">
+          <div class="list-head"><h3>❓ Ayuda</h3></div>
+          <p class="help">
+            Usa el menú superior para mostrar una sola sección a la vez.
+            La calculadora científica acepta teclado. Historial y favoritos se guardan durante la sesión.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>La ciencia es el camino hacia el progreso, la precisión su herramienta y el conocimiento su destino.</span>
+      <strong>UTM</strong>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
